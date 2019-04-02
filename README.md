@@ -2,6 +2,8 @@
 本アプリケーションは古典平均場アニーリング反復法を使用した画像修復アプリケーションです。
 コードはJava SE6をベースにしたswingで実装しています。
 
+<img src="https://github.com/Hermiltonian/image-restoring/blob/master/captured_image.png">
+
 # 使い方（Usage）
 ## 起動方法（How to activate)
 ImagePanel.javaをEclipse等のIDEで実行してください。または、コンパイル済みのアプリケーションにて`java ImageRestoring`と実行してください。
