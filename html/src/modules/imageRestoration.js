@@ -26,12 +26,13 @@ export default class ImageRestoration {
 
     restore(nishimoriInverseTemperature, restorationInverseTemperature, exchangeConstant, errorThreshold) {
         const bp = nishimoriInverseTemperature
-        const bm = restorationInverseTemperature
+        let bm = restorationInverseTemperature
         const iterationMaxCount = 1000
 
         let restoredImage = this.degradedImage.clone()
         let error = 0.0
         let iterationCount = 0
+        const temperatureDecreaseRatio = 0.01
 
         // 誤差が上限を下回るまで反復計算
         do {
@@ -53,6 +54,7 @@ export default class ImageRestoration {
             }
 
             error = error / this.degradedImage.length
+            bm += temperatureDecreaseRatio * restorationInverseTemperature
         } while (error >= errorThreshold && iterationCount < iterationMaxCount)
 
         restoredImage = ImageRestoration.measureSpins(restoredImage)
