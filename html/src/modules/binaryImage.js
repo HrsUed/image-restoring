@@ -10,6 +10,20 @@ export default class BinaryImage {
         this._sites = blankImage ? [] : BinaryImageBuilder.generateTreeSites(width, height)
     }
 
+    static buildBowImage(width = 1, height = 1) {
+        const image = new BinaryImage(width, height, true)
+        image.sites = BinaryImageBuilder.generateBowSites(width, height)
+
+        return image
+    }
+
+    static buildTreeImage(width = 1, height = 1) {
+        const image = new BinaryImage(width, height, true)
+        image.sites = BinaryImageBuilder.generateTreeSites(width, height)
+
+        return image
+    }
+
     get width() {
         return this._width
     }

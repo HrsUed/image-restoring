@@ -14,6 +14,7 @@
 	}
 
 	let degradeProbability = 0.1
+	let theme = null
 
 	$: nishimoriInverseTemperature = ImageRestoration.getNishimoriInverseTemperature(degradeProbability)
 	$: iterationCount
@@ -25,7 +26,7 @@
 		iterationCount
 	} = ImageRestoration.DefaultParameters()
 
-	const originalImage = new BinaryImage(imageSize.width, imageSize.height)
+	$: originalImage = buildOriginalImage()
 	$: degradedImage = new BinaryImage(imageSize.width, imageSize.height, true)
 	$: restoredImage = new BinaryImage(imageSize.width, imageSize.height, true)
 
@@ -54,6 +55,24 @@
 		restoredImage.reset()
 		degradedImage = degradedImage
 		restoredImage = restoredImage
+		originalImage = buildOriginalImage()
+	}
+
+	function setTheme(event) {
+		theme = event.detail.theme
+		originalImage = buildOriginalImage()
+	}
+
+	function buildOriginalImage() {
+		const isWorkInProgress = !(degradedImage == undefined || degradedImage.isBlank())
+
+		if (isWorkInProgress) return originalImage
+
+		if (theme) {
+			return BinaryImage.buildTreeImage(imageSize.width, imageSize.height)
+		} else {
+			return BinaryImage.buildBowImage(imageSize.width, imageSize.height)
+		}
 	}
 </script>
 
@@ -102,7 +121,7 @@
 </main>
 
 <footer>
-	<ThemeSwitch />
+	<ThemeSwitch on:theme-switch={setTheme} />
 
 	<Snow />
 </footer>

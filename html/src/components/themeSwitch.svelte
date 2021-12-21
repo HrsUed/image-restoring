@@ -1,6 +1,13 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
     function toggle() {
         window.document.body.classList.toggle('silent-night')
+
+        const theme = window.document.body.classList.contains('silent-night') ? 'silent-night' : null
+        dispatch('theme-switch', {theme})
     }
 </script>
 
