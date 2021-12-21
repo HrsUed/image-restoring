@@ -63,4 +63,21 @@ export default class BinaryImageBuilder {
 
         return matrix.flat()
     }
+
+    static generateBowSites(width = 30, height = 30) {
+        const defaultValue = IsingSpin.Up()
+        const radius = width / 2 - 2
+        const origin = width * height / 2 - width / 2
+
+        let sites = new Array(width * height).fill().map(_ => new IsingSpin(defaultValue))
+
+        for (let y = 0; y < radius; y++) {
+            for (let x = 0; x < radius - y; x++) {
+                sites[origin + x - height * y].flip()
+                sites[origin - x + height * y].flip()
+            }
+        }
+
+        return sites
+    }
 }
