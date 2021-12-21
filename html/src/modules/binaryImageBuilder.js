@@ -6,7 +6,7 @@ export default class BinaryImageBuilder {
     }
 
     static generateTreeSites(width = 30, height = 30) {
-        const defaultValue = IsingSpin.Up
+        const defaultValue = IsingSpin.Up()
 
         const boundaryUnitHeight = height / 3
         const leftSideIndex = Math.floor((width - 1) / 2)

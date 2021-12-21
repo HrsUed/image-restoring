@@ -23,7 +23,7 @@
 		exchangeConstant,
 		errorThreshold,
 		iterationCount
-	} = ImageRestoration.DefaultParameters
+	} = ImageRestoration.DefaultParameters()
 
 	const originalImage = new BinaryImage(imageSize.width, imageSize.height)
 	$: degradedImage = new BinaryImage(imageSize.width, imageSize.height, true)
