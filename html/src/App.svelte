@@ -141,6 +141,7 @@
 
 	footer {
 		padding: 0 .5rem;
+		padding-bottom: 5rem;
 	}
 
 	h1 {
