@@ -2,6 +2,7 @@
   "name": "image-restoring",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@sveltejs/kit": "^1.20.4",
     "svelte": "^4.0.0",
