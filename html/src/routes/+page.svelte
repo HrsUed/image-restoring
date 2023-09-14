@@ -1,11 +1,11 @@
 <script>
-	import Image from './lib/components/image.svelte'
-	import ParameterInput from "./lib/components/parameterInput.svelte";
-	import Snow from './lib/components/snow.svelte'
-	import ThemeSwitch from "./lib/components/themeSwitch.svelte";
+	import Image from '../lib/components/image.svelte'
+	import ParameterInput from "../lib/components/parameterInput.svelte";
+	import Snow from '../lib/components/snow.svelte'
+	import ThemeSwitch from "../lib/components/themeSwitch.svelte";
 
-	import BinaryImage from './lib/modules/binaryImage'
-	import ImageRestoration from "./lib/modules/imageRestoration"
+	import BinaryImage from '../lib/modules/binaryImage'
+	import ImageRestoration from "../lib/modules/imageRestoration"
 
 	const imageSize = {
 		siteSize: 5,
@@ -76,11 +76,7 @@
 	}
 </script>
 
-<header>
-	<h1>画像修復アプリケーション</h1>
-</header>
-
-<main>
+<div>
 	<div class="util-panels">
 		<div class="panel">
 			<div class="title">パラメータ</div>
@@ -118,43 +114,15 @@
 			<Image image={restoredImage} {...imageSize} />
 		</div>
 	</div>
-</main>
+</div>
 
-<footer>
+<div class="footer">
 	<ThemeSwitch on:theme-switch={setTheme} />
 
 	<Snow />
-</footer>
+</div>
 
 <style>
-	header {
-		text-align: center;
-	}
-
-	main {
-		text-align: center;
-		padding: 1rem;
-		display: flex;
-		flex-flow: row;
-		flex-wrap: wrap;
-	}
-
-	footer {
-		padding: 0 .5rem;
-		padding-bottom: 5rem;
-	}
-
-	h1 {
-		text-transform: uppercase;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-
 	.util-panels {
 		display: flex;
 		flex-flow: column;
@@ -200,5 +168,10 @@
 
 	:global(body.silent-night) .panel {
 		box-shadow: 0 5px 10px 1px rgba(255, 255, 255, .14);
+	}
+
+	.footer {
+		padding: 0 .5rem;
+		padding-bottom: 5rem;
 	}
 </style>
