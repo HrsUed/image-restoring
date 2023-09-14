@@ -1,11 +1,11 @@
 <script>
-	import Image from './components/image.svelte'
-	import ParameterInput from "./components/parameterInput.svelte";
-	import Snow from './components/snow.svelte'
-	import ThemeSwitch from "./components/themeSwitch.svelte";
+	import Image from './lib/components/image.svelte'
+	import ParameterInput from "./lib/components/parameterInput.svelte";
+	import Snow from './lib/components/snow.svelte'
+	import ThemeSwitch from "./lib/components/themeSwitch.svelte";
 
-	import BinaryImage from './modules/binaryImage'
-	import ImageRestoration from "./modules/imageRestoration"
+	import BinaryImage from './lib/modules/binaryImage'
+	import ImageRestoration from "./lib/modules/imageRestoration"
 
 	const imageSize = {
 		siteSize: 5,
