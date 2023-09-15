@@ -1,4 +1,7 @@
 # Image Restring Simulator
+## Demo
+<img src="./demo.gif">
+
 ## Get started
 
 Install the dependencies...
