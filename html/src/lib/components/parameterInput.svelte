@@ -14,5 +14,6 @@
 <style>
     .parameter input {
         width: 8rem;
+        margin-left: 1rem;
     }
 </style>
