@@ -17,7 +17,7 @@
 
 <style>
     button {
-        margin: 1rem;
+        margin: 1rem 0;
         padding: 8px 12px;
         border-radius: 10px;
     }
