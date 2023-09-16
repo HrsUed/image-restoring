@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	import Image from '../lib/components/image.svelte'
 	import ParameterInput from "../lib/components/parameterInput.svelte";
 	import Snow from '../lib/components/snow.svelte'

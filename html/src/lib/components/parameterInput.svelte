@@ -1,6 +1,6 @@
-<script>
-    export let parameterValue
-    export let step
+<script lang='ts'>
+    export let parameterValue: number
+    export let step: number
     export let disabled = false
 </script>
 

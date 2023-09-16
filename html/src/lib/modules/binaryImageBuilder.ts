@@ -1,7 +1,7 @@
 import IsingSpin from "./isingSpin";
 
 export default class BinaryImageBuilder {
-    static generateUniformSites(width, height) {
+    static generateUniformSites(width: number, height: number) {
         return new Array(width * height).fill().map(_ => new IsingSpin())
     }
 
@@ -13,11 +13,11 @@ export default class BinaryImageBuilder {
         const rightSideIndex = Math.ceil((width - 1) / 2)
         const gradient = 2
 
-        const leftSideMinIndex = (length) => {
+        const leftSideMinIndex = (length: number) => {
             return Math.max(leftSideIndex - length, 0)
         }
 
-        const rightSideMaxIndex = (length) => {
+        const rightSideMaxIndex = (length: number) => {
             return Math.min(rightSideIndex + length, width)
         }
 
