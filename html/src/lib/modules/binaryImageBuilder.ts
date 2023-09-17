@@ -1,8 +1,8 @@
 import IsingSpin from "./isingSpin";
 
 export default class BinaryImageBuilder {
-    static generateUniformSites(width, height) {
-        return new Array(width * height).fill().map(_ => new IsingSpin())
+    static generateUniformSites(width: number, height: number) {
+        return Array.from({length: width * height}, () => new IsingSpin())
     }
 
     static generateTreeSites(width = 30, height = 30) {
@@ -13,16 +13,16 @@ export default class BinaryImageBuilder {
         const rightSideIndex = Math.ceil((width - 1) / 2)
         const gradient = 2
 
-        const leftSideMinIndex = (length) => {
+        const leftSideMinIndex = (length: number) => {
             return Math.max(leftSideIndex - length, 0)
         }
 
-        const rightSideMaxIndex = (length) => {
+        const rightSideMaxIndex = (length: number) => {
             return Math.min(rightSideIndex + length, width)
         }
 
-        let matrix = new Array(height).fill().map(_ => {
-            return new Array(width).fill().map(_ => new IsingSpin(defaultValue))
+        let matrix = Array.from({length: height}, () => {
+            return Array.from({length: width}, () => new IsingSpin(defaultValue))
         })
 
         // 縦に3つに分割した一番上の部分
@@ -69,7 +69,7 @@ export default class BinaryImageBuilder {
         const radius = width / 2 - 2
         const origin = width * height / 2 - width / 2
 
-        let sites = new Array(width * height).fill().map(_ => new IsingSpin(defaultValue))
+        let sites = Array.from({length: width * height}, () => new IsingSpin(defaultValue))
 
         for (let y = 0; y < radius; y++) {
             for (let x = 0; x < radius - y; x++) {

@@ -1,6 +1,8 @@
 import Site from './site'
 
 export default class IsingSpin extends Site {
+    private _spin: number
+
     constructor(spin = IsingSpin.createRandomValue()) {
         const value = IsingSpin.measure(spin)
 
@@ -16,7 +18,7 @@ export default class IsingSpin extends Site {
         return Math.random() - 0.5
     }
 
-    static measure(value) {
+    static measure(value: number) {
         return value >= 0 ? this.Up() : this.Down()
     }
 
@@ -40,7 +42,7 @@ export default class IsingSpin extends Site {
         return this._spin > 0
     }
 
-    degrade(probability) {
+    degrade(probability: number) {
         this.flipWithRandom(probability)
     }
 
@@ -48,7 +50,7 @@ export default class IsingSpin extends Site {
         this._spin *= -1
     }
 
-    flipWithRandom(probability) {
+    flipWithRandom(probability: number) {
         if (Math.random() < probability) {
             this.flip()
         }

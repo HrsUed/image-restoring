@@ -1,5 +1,9 @@
+import type BinaryImage from "./binaryImage"
+
 export default class ImageRestoration {
-    constructor(degradedImage) {
+    private degradedImage: BinaryImage
+
+    constructor(degradedImage: BinaryImage) {
         this.degradedImage = degradedImage.clone()
     }
 
@@ -12,7 +16,7 @@ export default class ImageRestoration {
         }
     }
 
-    static measureSpins(image) {
+    static measureSpins(image: BinaryImage) {
         let resultImage = image.clone()
 
         resultImage.sites.forEach(s => s.measure())
@@ -20,11 +24,11 @@ export default class ImageRestoration {
         return resultImage
     }
 
-    static getNishimoriInverseTemperature(probability) {
+    static getNishimoriInverseTemperature(probability: number) {
         return 0.5 * Math.log((1.0 - probability) / probability)
     }
 
-    restore(nishimoriInverseTemperature, restorationInverseTemperature, exchangeConstant, errorThreshold) {
+    restore(nishimoriInverseTemperature: number, restorationInverseTemperature: number, exchangeConstant: number, errorThreshold: number) {
         const bp = nishimoriInverseTemperature
         let bm = restorationInverseTemperature
         const iterationMaxCount = 1000

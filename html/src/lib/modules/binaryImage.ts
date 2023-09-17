@@ -2,6 +2,12 @@ import IsingSpin from './isingSpin'
 import BinaryImageBuilder from "./binaryImageBuilder";
 
 export default class BinaryImage {
+    private _width: number
+    private _height: number
+    private _length: number
+    private _blank: boolean
+    private _sites: IsingSpin[]
+
     constructor(width = 1, height = 1, blankImage = false) {
         this._width = width
         this._height = height
@@ -45,11 +51,11 @@ export default class BinaryImage {
         this._blank = newSites.length == 0
     }
 
-    value(index) {
+    value(index: number) {
         return this.sites[index].value
     }
 
-    setValue(index, value) {
+    setValue(index: number, value: number) {
         this.sites[index] = new IsingSpin(value)
     }
 
@@ -71,7 +77,7 @@ export default class BinaryImage {
         return this._blank
     }
 
-    createDegradedImage(probability) {
+    createDegradedImage(probability: number) {
         let image = new BinaryImage(this.width, this.height, true)
 
         image.sites = this.clone().sites.map(site => {
@@ -82,7 +88,7 @@ export default class BinaryImage {
         return image
     }
 
-    nearestNeighborSites(siteIndex) {
+    nearestNeighborSites(siteIndex: number) {
         const width = this.width
         const height = this.height
 

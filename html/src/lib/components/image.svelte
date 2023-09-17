@@ -1,7 +1,8 @@
-<script>
+<script lang='ts'>
+    import type BinaryImage from '$lib/modules/binaryImage';
     import Spin from './spin.svelte'
 
-    export let image
+    export let image: BinaryImage
     export let siteSize = 5
     export let width = 30
     export let height = 30

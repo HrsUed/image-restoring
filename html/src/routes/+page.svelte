@@ -1,4 +1,5 @@
-<script>
+<script lang='ts'>
+	import type { ComponentEvents } from 'svelte';
 	import Image from '../lib/components/image.svelte'
 	import ParameterInput from "../lib/components/parameterInput.svelte";
 	import Snow from '../lib/components/snow.svelte'
@@ -14,7 +15,7 @@
 	}
 
 	let degradeProbability = 0.1
-	let theme = null
+	let isThemeSwitched = false
 
 	$: nishimoriInverseTemperature = ImageRestoration.getNishimoriInverseTemperature(degradeProbability)
 	$: iterationCount
@@ -42,7 +43,7 @@
 			restorationInverseTemperature,
 			exchangeConstant,
 			errorThreshold
-		]
+		] as const
 
 		const result = imageRestoration.restore(...restorationParameters)
 		restoredImage = result.restoredImage
@@ -58,17 +59,17 @@
 		originalImage = buildOriginalImage()
 	}
 
-	function setTheme(event) {
-		theme = event.detail.theme
+	function setTheme(event: ComponentEvents<ThemeSwitch>['theme-switch']) {
+		isThemeSwitched = event.detail.theme
 		originalImage = buildOriginalImage()
 	}
 
-	function buildOriginalImage() {
+	function buildOriginalImage(): BinaryImage {
 		const isWorkInProgress = !(degradedImage == undefined || degradedImage.isBlank())
 
 		if (isWorkInProgress) return originalImage
 
-		if (theme) {
+		if (isThemeSwitched) {
 			return BinaryImage.buildTreeImage(imageSize.width, imageSize.height)
 		} else {
 			return BinaryImage.buildBowImage(imageSize.width, imageSize.height)
@@ -81,12 +82,12 @@
 		<div class="panel">
 			<div class="title">パラメータ</div>
 			<div class="parameters">
-				<ParameterInput bind:parameterValue={degradeProbability} step="0.1">劣化確率</ParameterInput>
-				<ParameterInput bind:parameterValue={nishimoriInverseTemperature} step="0.01" disabled="true">西森逆温度</ParameterInput>
-				<ParameterInput bind:parameterValue={restorationInverseTemperature} step="0.1">修復逆温度</ParameterInput>
-				<ParameterInput bind:parameterValue={exchangeConstant} step="0.1">交換定数</ParameterInput>
-				<ParameterInput bind:parameterValue={errorThreshold} step="0.0001">誤差</ParameterInput>
-				<ParameterInput bind:parameterValue={iterationCount} disabled="true">反復回数</ParameterInput>
+				<ParameterInput bind:parameterValue={degradeProbability} step={0.1}>劣化確率</ParameterInput>
+				<ParameterInput bind:parameterValue={nishimoriInverseTemperature} step={0.01} disabled={true}>西森逆温度</ParameterInput>
+				<ParameterInput bind:parameterValue={restorationInverseTemperature} step={0.1}>修復逆温度</ParameterInput>
+				<ParameterInput bind:parameterValue={exchangeConstant} step={0.1}>交換定数</ParameterInput>
+				<ParameterInput bind:parameterValue={errorThreshold} step={0.0001}>誤差</ParameterInput>
+				<ParameterInput bind:parameterValue={iterationCount} step={1} disabled={true}>反復回数</ParameterInput>
 			</div>
 		</div>
 

@@ -1,6 +1,8 @@
-<script>
-    export let spin = undefined
-    export let size
+<script lang='ts'>
+    import type IsingSpin from "$lib/modules/isingSpin";
+
+    export let spin: IsingSpin
+    export let size: number
 </script>
 
 <div
