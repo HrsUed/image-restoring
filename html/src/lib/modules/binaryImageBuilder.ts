@@ -2,7 +2,7 @@ import IsingSpin from "./isingSpin";
 
 export default class BinaryImageBuilder {
     static generateUniformSites(width: number, height: number) {
-        return new Array(width * height).fill().map(_ => new IsingSpin())
+        return Array.from({length: width * height}, () => new IsingSpin())
     }
 
     static generateTreeSites(width = 30, height = 30) {
@@ -21,8 +21,8 @@ export default class BinaryImageBuilder {
             return Math.min(rightSideIndex + length, width)
         }
 
-        let matrix = new Array(height).fill().map(_ => {
-            return new Array(width).fill().map(_ => new IsingSpin(defaultValue))
+        let matrix = Array.from({length: height}, () => {
+            return Array.from({length: width}, () => new IsingSpin(defaultValue))
         })
 
         // 縦に3つに分割した一番上の部分
@@ -69,7 +69,7 @@ export default class BinaryImageBuilder {
         const radius = width / 2 - 2
         const origin = width * height / 2 - width / 2
 
-        let sites = new Array(width * height).fill().map(_ => new IsingSpin(defaultValue))
+        let sites = Array.from({length: width * height}, () => new IsingSpin(defaultValue))
 
         for (let y = 0; y < radius; y++) {
             for (let x = 0; x < radius - y; x++) {
