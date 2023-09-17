@@ -1,113 +1,109 @@
-import IsingSpin from './isingSpin'
-import BinaryImageBuilder from "./binaryImageBuilder";
+import IsingSpin from './isingSpin';
+import BinaryImageBuilder from './binaryImageBuilder';
 
 export default class BinaryImage {
-    private _width: number
-    private _height: number
-    private _length: number
-    private _blank: boolean
-    private _sites: IsingSpin[]
+  private _width: number;
+  private _height: number;
+  private _length: number;
+  private _blank: boolean;
+  private _sites: IsingSpin[];
 
-    constructor(width = 1, height = 1, blankImage = false) {
-        this._width = width
-        this._height = height
-        this._length = width * height
-        this._blank = blankImage
-        this._sites = blankImage ? [] : BinaryImageBuilder.generateTreeSites(width, height)
-    }
+  constructor(width = 1, height = 1, blankImage = false) {
+    this._width = width;
+    this._height = height;
+    this._length = width * height;
+    this._blank = blankImage;
+    this._sites = blankImage ? [] : BinaryImageBuilder.generateTreeSites(width, height);
+  }
 
-    static buildBowImage(width = 1, height = 1) {
-        const image = new BinaryImage(width, height, true)
-        image.sites = BinaryImageBuilder.generateBowSites(width, height)
+  static buildBowImage(width = 1, height = 1) {
+    const image = new BinaryImage(width, height, true);
+    image.sites = BinaryImageBuilder.generateBowSites(width, height);
 
-        return image
-    }
+    return image;
+  }
 
-    static buildTreeImage(width = 1, height = 1) {
-        const image = new BinaryImage(width, height, true)
-        image.sites = BinaryImageBuilder.generateTreeSites(width, height)
+  static buildTreeImage(width = 1, height = 1) {
+    const image = new BinaryImage(width, height, true);
+    image.sites = BinaryImageBuilder.generateTreeSites(width, height);
 
-        return image
-    }
+    return image;
+  }
 
-    get width() {
-        return this._width
-    }
+  get width() {
+    return this._width;
+  }
 
-    get height() {
-        return this._height
-    }
+  get height() {
+    return this._height;
+  }
 
-    get length() {
-        return this._length
-    }
+  get length() {
+    return this._length;
+  }
 
-    get sites() {
-        return this._sites
-    }
+  get sites() {
+    return this._sites;
+  }
 
-    set sites(newSites) {
-        this._sites = newSites
-        this._blank = newSites.length == 0
-    }
+  set sites(newSites) {
+    this._sites = newSites;
+    this._blank = newSites.length == 0;
+  }
 
-    value(index: number) {
-        return this.sites[index].value
-    }
+  value(index: number) {
+    return this.sites[index].value;
+  }
 
-    setValue(index: number, value: number) {
-        this.sites[index] = new IsingSpin(value)
-    }
+  setValue(index: number, value: number) {
+    this.sites[index] = new IsingSpin(value);
+  }
 
-    clone() {
-        let image = new BinaryImage(this.width, this.height, true)
+  clone() {
+    let image = new BinaryImage(this.width, this.height, true);
 
-        image.sites = this.sites.map(originalSite => {
-            return new IsingSpin(originalSite.value)
-        })
+    image.sites = this.sites.map((originalSite) => {
+      return new IsingSpin(originalSite.value);
+    });
 
-        return image
-    }
+    return image;
+  }
 
-    reset() {
-        this.sites = []
-    }
+  reset() {
+    this.sites = [];
+  }
 
-    isBlank() {
-        return this._blank
-    }
+  isBlank() {
+    return this._blank;
+  }
 
-    createDegradedImage(probability: number) {
-        let image = new BinaryImage(this.width, this.height, true)
+  createDegradedImage(probability: number) {
+    let image = new BinaryImage(this.width, this.height, true);
 
-        image.sites = this.clone().sites.map(site => {
-            site.degrade(probability)
-            return site
-        })
+    image.sites = this.clone().sites.map((site) => {
+      site.degrade(probability);
+      return site;
+    });
 
-        return image
-    }
+    return image;
+  }
 
-    nearestNeighborSites(siteIndex: number) {
-        const width = this.width
-        const height = this.height
+  nearestNeighborSites(siteIndex: number) {
+    const width = this.width;
+    const height = this.height;
 
-        const hasTop = Math.floor(siteIndex / height) > 0
-        const hasBottom = Math.floor(siteIndex / height) < height - 1
-        const hasLeft = siteIndex % width > 0
-        const hasRight = siteIndex % width < width - 1
+    const hasTop = Math.floor(siteIndex / height) > 0;
+    const hasBottom = Math.floor(siteIndex / height) < height - 1;
+    const hasLeft = siteIndex % width > 0;
+    const hasRight = siteIndex % width < width - 1;
 
-        let indices = []
+    let indices = [];
 
-        if (hasTop)
-            indices.push(siteIndex - width)
-        if (hasBottom)
-            indices.push(siteIndex + width)
-        if (hasLeft)
-            indices.push(siteIndex - 1)
-        if (hasRight)
-            indices.push(siteIndex + 1)
+    if (hasTop) indices.push(siteIndex - width);
+    if (hasBottom) indices.push(siteIndex + width);
+    if (hasLeft) indices.push(siteIndex - 1);
+    if (hasRight) indices.push(siteIndex + 1);
 
-        return indices.map(i => this.sites[i])
-    }
+    return indices.map((i) => this.sites[i]);
+  }
 }
