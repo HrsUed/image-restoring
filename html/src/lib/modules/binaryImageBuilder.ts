@@ -21,7 +21,7 @@ export default class BinaryImageBuilder {
       return Math.min(rightSideIndex + length, width);
     };
 
-    let matrix = Array.from({ length: height }, () => {
+    const matrix = Array.from({ length: height }, () => {
       return Array.from({ length: width }, () => new IsingSpin(defaultValue));
     });
 
@@ -69,7 +69,7 @@ export default class BinaryImageBuilder {
     const radius = width / 2 - 2;
     const origin = (width * height) / 2 - width / 2;
 
-    let sites = Array.from({ length: width * height }, () => new IsingSpin(defaultValue));
+    const sites = Array.from({ length: width * height }, () => new IsingSpin(defaultValue));
 
     for (let y = 0; y < radius; y++) {
       for (let x = 0; x < radius - y; x++) {

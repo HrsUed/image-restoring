@@ -60,7 +60,7 @@ export default class BinaryImage {
   }
 
   clone() {
-    let image = new BinaryImage(this.width, this.height, true);
+    const image = new BinaryImage(this.width, this.height, true);
 
     image.sites = this.sites.map((originalSite) => {
       return new IsingSpin(originalSite.value);
@@ -78,7 +78,7 @@ export default class BinaryImage {
   }
 
   createDegradedImage(probability: number) {
-    let image = new BinaryImage(this.width, this.height, true);
+    const image = new BinaryImage(this.width, this.height, true);
 
     image.sites = this.clone().sites.map((site) => {
       site.degrade(probability);
@@ -97,7 +97,7 @@ export default class BinaryImage {
     const hasLeft = siteIndex % width > 0;
     const hasRight = siteIndex % width < width - 1;
 
-    let indices = [];
+    const indices = [];
 
     if (hasTop) indices.push(siteIndex - width);
     if (hasBottom) indices.push(siteIndex + width);

@@ -17,7 +17,7 @@ export default class ImageRestoration {
   }
 
   static measureSpins(image: BinaryImage) {
-    let resultImage = image.clone();
+    const resultImage = image.clone();
 
     resultImage.sites.forEach((s) => s.measure());
 
@@ -49,7 +49,7 @@ export default class ImageRestoration {
       error = 0.0;
 
       // 差分を取得できるように更新前の値をバックアップしておく
-      let priorIterationImage = restoredImage.clone();
+      const priorIterationImage = restoredImage.clone();
 
       for (let i = 0; i < this.degradedImage.length; i++) {
         let nearestNeighborTotalSpins = 0.0;
