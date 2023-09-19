@@ -4,6 +4,10 @@
 
 <img src="./demo.gif">
 
+## Requirements
+
+- Node v18+
+
 ## Get started
 
 Install the dependencies...
