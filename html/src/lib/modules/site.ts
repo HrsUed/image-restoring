@@ -1,4 +1,4 @@
-export default class Site {
+export default abstract class Site {
   private _value: number;
 
   constructor(value: number) {
@@ -13,7 +13,7 @@ export default class Site {
     return this._value;
   }
 
-  degrade(probability: number) {
+  degrade() {
     throw new Error("This method isn't implemented.");
   }
 }
