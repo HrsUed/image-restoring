@@ -19,10 +19,8 @@
 
   $: nishimoriInverseTemperature =
     ImageRestoration.getNishimoriInverseTemperature(degradeProbability);
-  $: iterationCount;
-
-  let { restorationInverseTemperature, exchangeConstant, errorThreshold, iterationCount } =
-    ImageRestoration.DefaultParameters();
+  $: ({ restorationInverseTemperature, exchangeConstant, errorThreshold, iterationCount } =
+    ImageRestoration.DefaultParameters());
 
   $: originalImage = buildOriginalImage();
   $: degradedImage = new BinaryImage(imageSize.width, imageSize.height, true);
