@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- Node v18+
+- Node v22+
 
 ## Get started
 
