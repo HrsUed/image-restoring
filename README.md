@@ -1,5 +1,5 @@
 # Description
-This application is an image restoration demo by classical mean field iterative methods.
+This application is an image restoration demo by classical mean field annealing iterative methods.
 Web browsers version and an Java legacy GUI are available.
 
 Browsers | GUI
